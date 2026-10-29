@@ -1,0 +1,8 @@
+[build]
+  command = "bun run build"
+  publish = "dist"
+
+[dev]
+  command = "npx vite"
+  targetPort = 5173
+  framework = "#custom"

@@ -122,7 +122,7 @@ async function loadDashboard() {
             }
 
             // Progress bar and slider
-            const progress = data.project.progress || 75;
+            const progress = typeof data.project.progress === 'number' ? data.project.progress : (parseInt(data.project.progress, 10) || 0);
             const progressText = document.getElementById('progressText');
             const progressFill = document.getElementById('progressFill');
             const progressRange = document.getElementById('progressRange');
@@ -172,8 +172,8 @@ function applyFallbackDashboardData() {
             title: 'Web-Based Integrated Project Monitoring System',
             description: 'Centralized platform for tracking student final year engineering projects, milestones, documentation, and guide feedback.',
             department: 'E&ACT',
-            guide_name: 'Prof. D. K. Kadam',
-            progress: 75,
+            guide_name: 'Prof. A. M. Kadli Mam',
+            progress: 90,
             status: 'In Progress',
             start_date: '10 Aug 2026',
             expected_completion: '30 Nov 2026',
@@ -213,10 +213,10 @@ function applyFallbackDashboardData() {
     if (deptEl) deptEl.textContent = project.department || 'E&ACT';
 
     const guideEl = document.getElementById('projectGuideDisplay');
-    if (guideEl) guideEl.textContent = project.guide_name || 'Prof. D. K. Kadam';
+    if (guideEl) guideEl.textContent = project.guide_name || 'Prof. A. M. Kadli Mam';
 
     const startEl = document.getElementById('projectStartDateDisplay');
-    if (startEl) startEl.textContent = project.start_date || '10 Aug 2026';
+    if (startEl) startEl.textContent = project.start_date || '01 Sep 2026';
 
     const deadEl = document.getElementById('projectDeadlineDisplay');
     if (deadEl) deadEl.textContent = project.expected_completion || '30 Nov 2026';
@@ -232,7 +232,7 @@ function applyFallbackDashboardData() {
         statusEl.className = project.status === 'Completed' ? 'status completed-status' : 'status progress-status';
     }
 
-    const progress = project.progress || 75;
+    const progress = typeof project.progress === 'number' ? project.progress : 90;
     const progressText = document.getElementById('progressText');
     const progressFill = document.getElementById('progressFill');
     const progressRange = document.getElementById('progressRange');
@@ -283,7 +283,10 @@ async function toggleMilestone(milestoneId, newStatus) {
         });
         const data = await res.json();
         if (data.success) {
-            showToast(`Milestone updated!`);
+            const msg = data.project_progress !== undefined 
+                ? `Milestone updated! Project progress: ${data.project_progress}%` 
+                : 'Milestone updated!';
+            showToast(msg);
             loadDashboard();
         }
     } catch (e) {
