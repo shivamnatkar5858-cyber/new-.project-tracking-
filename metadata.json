@@ -1,0 +1,6 @@
+{
+  "name": "ProjectTrack - Integrated Project Monitoring System",
+  "description": "Web-Based Integrated Project Monitoring System with Python Flask backend, SQLite, REST API, Student and Teacher Dashboards.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

@@ -1,0 +1,659 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>ProjectTrack - Integrated Project Monitoring System</title>
+    <meta name="description" content="Web-Based Integrated Project Monitoring System with Python Flask backend, SQLite, REST API, Student and Teacher Dashboards." />
+    <meta property="og:title" content="ProjectTrack - Integrated Project Monitoring System" />
+    <meta property="og:description" content="Web-Based Integrated Project Monitoring System with Python Flask backend, SQLite, REST API, Student and Teacher Dashboards." />
+    <meta property="og:type" content="website" />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <!-- Google Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<!-- ================= NAVBAR ================= -->
+<header class="navbar">
+
+    <div class="logo" onclick="window.location.href='index.html'">
+        <i class="fa-solid fa-diagram-project"></i>
+        <span>
+            Project<span class="logo-highlight">Track</span>
+        </span>
+    </div>
+
+    <nav>
+        <a href="#home">Home</a>
+        <a href="#features">Features</a>
+        <a href="#testimonials">Testimonials</a>
+        <a href="#about">About</a>
+    </nav>
+
+    <!-- LOGIN BUTTONS -->
+    <div class="nav-actions">
+        <a href="student-login.html" class="login-btn" onclick="openStudentLogin(); return true;">
+            <i class="fa-solid fa-user-graduate"></i>
+            Student Login
+        </a>
+        <a href="teacher-login.html" class="login-btn teacher-btn" onclick="openTeacherLogin(); return true;">
+            <i class="fa-solid fa-chalkboard-user"></i>
+            Teacher Login
+        </a>
+    </div>
+
+</header>
+
+
+<!-- ================= HERO WITH REAL-TIME WEBGL DOT GRID WAVE ================= -->
+<div class="hero-wave-wrap">
+    <canvas id="dotGridCanvas" class="dot-grid-canvas"></canvas>
+
+    <!-- Floating Remix Playground Trigger Button -->
+    <button class="remix-playground-pill" onclick="window.DotGridWave && window.DotGridWave.openPlayground()" title="Open Dot Grid Wave Remix Playground">
+        <span class="pulse-indicator"></span>
+        <i class="fa-solid fa-water"></i>
+        <span>Dot Grid Wave <strong>Remix Playground</strong></span>
+        <span class="live-tag">WebGL 60FPS</span>
+    </button>
+
+    <section class="hero hero-dark-theme" id="home">
+
+    <div class="hero-content">
+
+        <div class="badge">
+            <i class="fa-solid fa-graduation-cap"></i>
+            College Project Management
+        </div>
+
+        <h1>
+            Web-Based
+            <span>Project Monitoring</span>
+            System
+        </h1>
+
+        <p>
+            Manage student projects, monitor progress, communicate with
+            teachers and track project development from one powerful platform.
+        </p>
+
+        <div class="hero-buttons">
+
+            <!-- STUDENT LOGIN BUTTON -->
+            <a href="student-login.html" class="primary-btn" onclick="openStudentLogin(); return true;">
+                <i class="fa-solid fa-user-graduate"></i>
+                Student Login
+                <i class="fa-solid fa-arrow-right"></i>
+            </a>
+
+            <!-- TEACHER LOGIN BUTTON -->
+            <a href="teacher-login.html" class="secondary-btn" onclick="openTeacherLogin(); return true;">
+                <i class="fa-solid fa-chalkboard-user"></i>
+                Teacher Login
+            </a>
+
+            <button class="secondary-btn" onclick="scrollToFeatures()">
+                Explore Features
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <!-- DASHBOARD PREVIEW -->
+    <div class="dashboard-preview">
+
+        <div class="preview-header">
+
+            <div>
+                <small>PROJECT DASHBOARD</small>
+                <h3>Project Overview</h3>
+            </div>
+
+            <div class="profile-icon">
+                <i class="fa-solid fa-user"></i>
+            </div>
+
+        </div>
+
+
+        <div class="stats">
+
+            <div class="stat-card">
+                <i class="fa-solid fa-folder-open"></i>
+                <div>
+                    <small>Total Projects</small>
+                    <strong>4</strong>
+                </div>
+            </div>
+
+            <div class="stat-card">
+                <i class="fa-solid fa-spinner"></i>
+                <div>
+                    <small>In Progress</small>
+                    <strong>2</strong>
+                </div>
+            </div>
+
+            <div class="stat-card">
+                <i class="fa-solid fa-circle-check"></i>
+                <div>
+                    <small>Completed</small>
+                    <strong>1</strong>
+                </div>
+            </div>
+
+        </div>
+
+
+        <div class="progress-box">
+
+            <div class="progress-title">
+                <span>Web-Based Project Monitoring System (SIH26103)</span>
+                <strong>75%</strong>
+            </div>
+
+            <div class="progress-bar">
+                <div class="progress-fill" style="width:75%"></div>
+            </div>
+
+            <div class="progress-info">
+                <span>Team: 5 Students (E&ACT)</span>
+                <span>Guide: Prof. Kadam Sir</span>
+            </div>
+
+        </div>
+
+
+        <div class="project-row">
+            <div class="project-icon">
+                <i class="fa-solid fa-microchip"></i>
+            </div>
+            <div class="project-name">
+                <strong>IoT Monitoring System</strong>
+                <small>Electronics & Communication</small>
+            </div>
+            <span class="status progress-status">
+                In Progress
+            </span>
+        </div>
+
+        <div class="project-row">
+            <div class="project-icon">
+                <i class="fa-solid fa-globe"></i>
+            </div>
+            <div class="project-name">
+                <strong>College Management Portal</strong>
+                <small>Computer Science</small>
+            </div>
+            <span class="status completed-status">
+                Completed
+            </span>
+        </div>
+
+    </div>
+
+</section>
+</div>
+
+
+<!-- ================= FEATURES ================= -->
+<section class="features-section" id="features">
+
+    <div class="section-heading">
+        <span>POWERFUL FEATURES</span>
+        <h2>
+            Everything You Need to
+            <span>Monitor Projects</span>
+        </h2>
+        <p>
+            A centralized platform for students, teachers and administrators.
+        </p>
+    </div>
+
+    <div class="feature-grid">
+
+        <div class="feature-card">
+            <div class="feature-icon">
+                <i class="fa-solid fa-user-graduate"></i>
+            </div>
+            <h3>Student Login</h3>
+            <a href="student-login.html" class="login-btn" onclick="openStudentLogin(); return true;">
+                <i class="fa-solid fa-user-graduate"></i>
+                Student Login
+            </a>
+            <p>
+                Students can register projects, update progress,
+                upload reports and view teacher feedback.
+            </p>
+        </div>
+
+        <div class="feature-card">
+            <div class="feature-icon">
+                <i class="fa-solid fa-chalkboard-user"></i>
+            </div>
+            <h3>Teacher Login</h3>
+            <a href="teacher-login.html" class="login-btn teacher-btn" onclick="openTeacherLogin(); return true;">
+                <i class="fa-solid fa-chalkboard-user"></i>
+                Teacher Login
+            </a>
+            <p>
+                Teachers can monitor assigned projects,
+                review progress and provide feedback.
+            </p>
+        </div>
+
+        <div class="feature-card">
+            <div class="feature-icon">
+                <i class="fa-solid fa-chart-line"></i>
+            </div>
+            <h3>Progress Tracking</h3>
+            <p>
+                Track project completion using progress percentages,
+                milestones and project status.
+            </p>
+        </div>
+
+        <div class="feature-card">
+            <div class="feature-icon">
+                <i class="fa-solid fa-file-arrow-up"></i>
+            </div>
+            <h3>Report Upload</h3>
+            <p>
+                Upload project documents, progress reports,
+                presentations and other files.
+            </p>
+        </div>
+
+        <div class="feature-card">
+            <div class="feature-icon">
+                <i class="fa-solid fa-users"></i>
+            </div>
+            <h3>Team Management</h3>
+            <p>
+                Manage team members, student details and
+                project guide assignments.
+            </p>
+        </div>
+
+        <div class="feature-card">
+            <div class="feature-icon">
+                <i class="fa-solid fa-bell"></i>
+            </div>
+            <h3>Notifications</h3>
+            <p>
+                Receive important project updates,
+                deadlines and teacher notifications.
+            </p>
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ================= TESTIMONIALS SLIDER SECTION ================= -->
+<section class="testimonials-section" id="testimonials">
+
+    <div class="section-heading">
+        <span>COMMUNITY VOICES &amp; FEEDBACK</span>
+        <h2>
+            What Students &amp; Teachers
+            <span>Say About ProjectTrack</span>
+        </h2>
+        <p>
+            Authentic experiences from engineering students, faculty guides, and departmental coordinators managing final-year college projects.
+        </p>
+    </div>
+
+    <!-- Filter & Action Bar -->
+    <div class="testimonials-header-bar">
+        <div class="testimonial-filter-tabs" role="tablist" aria-label="Testimonials Filter">
+            <button class="testimonial-filter-tab active" data-filter="all" role="tab" aria-selected="true">
+                <i class="fa-solid fa-layer-group"></i>
+                All Feedback
+                <span class="filter-count" id="countAllTestimonials">7</span>
+            </button>
+            <button class="testimonial-filter-tab" data-filter="student" role="tab" aria-selected="false">
+                <i class="fa-solid fa-graduation-cap"></i>
+                Students
+                <span class="filter-count" id="countStudentTestimonials">4</span>
+            </button>
+            <button class="testimonial-filter-tab" data-filter="teacher" role="tab" aria-selected="false">
+                <i class="fa-solid fa-chalkboard-user"></i>
+                Teachers &amp; Guides
+                <span class="filter-count" id="countTeacherTestimonials">3</span>
+            </button>
+        </div>
+
+        <button class="btn-share-feedback" id="openFeedbackModalBtn" title="Share your experience using ProjectTrack">
+            <i class="fa-solid fa-pen-to-square"></i>
+            Share Your Experience
+        </button>
+    </div>
+
+    <!-- Slider Outer Wrapper -->
+    <div class="slider-outer-wrapper">
+        <button class="slider-nav-btn prev-btn" id="sliderPrevBtn" aria-label="Previous Testimonial">
+            <i class="fa-solid fa-chevron-left"></i>
+        </button>
+
+        <div class="slider-viewport" id="testimonialsSliderViewport" tabindex="0" aria-label="Testimonial Carousel">
+            <div class="slider-track" id="testimonialsTrack">
+                <!-- Dynamically populated by testimonial-slider.js -->
+            </div>
+        </div>
+
+        <button class="slider-nav-btn next-btn" id="sliderNextBtn" aria-label="Next Testimonial">
+            <i class="fa-solid fa-chevron-right"></i>
+        </button>
+    </div>
+
+    <!-- Slider Footer Bar (Controls, Dots, Counter) -->
+    <div class="slider-footer-bar">
+        <button class="slider-autoplay-btn" id="sliderAutoplayBtn" aria-label="Toggle autoplay">
+            <i class="fa-solid fa-pause"></i>
+            <span>Pause</span>
+        </button>
+
+        <div class="slider-dots" id="sliderDots" role="tablist" aria-label="Testimonial slide navigation">
+            <!-- Dynamically populated by testimonial-slider.js -->
+        </div>
+
+        <div class="slider-counter" id="sliderCounter">
+            <strong>01</strong> / <span>07</span>
+        </div>
+    </div>
+
+</section>
+
+<!-- Feedback Modal -->
+<div class="feedback-modal-overlay" id="feedbackModal" role="dialog" aria-modal="true" aria-labelledby="feedbackModalTitle">
+    <div class="feedback-modal-card">
+        <div class="modal-header">
+            <div>
+                <h3 id="feedbackModalTitle"><i class="fa-solid fa-comment-dots" style="color: var(--primary);"></i> Share Your Feedback</h3>
+                <p>Help other students and faculty learn about your experience with ProjectTrack.</p>
+            </div>
+            <button class="modal-close-btn" id="closeFeedbackModalBtn" aria-label="Close modal">&times;</button>
+        </div>
+
+        <form id="feedbackForm" class="modal-body">
+            <div class="modal-form-grid">
+                <div class="modal-field">
+                    <label for="fbName">Full Name *</label>
+                    <input type="text" id="fbName" class="modal-input" placeholder="e.g. Shivam Natkar" required>
+                </div>
+
+                <div class="modal-field">
+                    <label for="fbRole">I Am A *</label>
+                    <select id="fbRole" class="modal-select" required>
+                        <option value="student">Student</option>
+                        <option value="teacher">Teacher / Faculty Guide</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="modal-form-grid">
+                <div class="modal-field">
+                    <label for="fbRoleTitle">Role / Designation *</label>
+                    <input type="text" id="fbRoleTitle" class="modal-input" placeholder="e.g. Final Year Team Lead or Senior Guide" required>
+                </div>
+
+                <div class="modal-field">
+                    <label for="fbDepartment">Department *</label>
+                    <input type="text" id="fbDepartment" class="modal-input" placeholder="e.g. E&amp;ACT or CSE" value="E&amp;ACT" required>
+                </div>
+            </div>
+
+            <div class="modal-field">
+                <label for="fbProjectFocus">Project Name or Coordinator Focus</label>
+                <input type="text" id="fbProjectFocus" class="modal-input" placeholder="e.g. IoT Smart Campus System or 15+ Capstone Batches">
+            </div>
+
+            <div class="modal-field">
+                <label for="fbImpactTag">Key Highlight / Impact</label>
+                <input type="text" id="fbImpactTag" class="modal-input" placeholder="e.g. 100% On-Schedule or Fast Verification">
+            </div>
+
+            <div class="modal-field">
+                <label>Your Rating *</label>
+                <div class="star-picker-wrapper">
+                    <div class="star-picker-btns" id="modalStarGroup">
+                        <button type="button" class="star-btn" data-val="1"><i class="fa-solid fa-star" style="color: #f59e0b;"></i></button>
+                        <button type="button" class="star-btn" data-val="2"><i class="fa-solid fa-star" style="color: #f59e0b;"></i></button>
+                        <button type="button" class="star-btn" data-val="3"><i class="fa-solid fa-star" style="color: #f59e0b;"></i></button>
+                        <button type="button" class="star-btn" data-val="4"><i class="fa-solid fa-star" style="color: #f59e0b;"></i></button>
+                        <button type="button" class="star-btn" data-val="5"><i class="fa-solid fa-star" style="color: #f59e0b;"></i></button>
+                    </div>
+                    <span class="star-rating-hint" id="ratingDescription">5 - Exceptional / Excellent!</span>
+                    <input type="hidden" id="modalRatingInput" value="5">
+                </div>
+            </div>
+
+            <div class="modal-field">
+                <label for="fbQuote">Your Feedback &amp; Experience *</label>
+                <textarea id="fbQuote" class="modal-textarea" rows="4" placeholder="How has ProjectTrack helped your project coordination, milestone submissions, or report reviews?" required></textarea>
+            </div>
+
+            <div class="modal-actions">
+                <button type="button" class="btn-modal-cancel" id="cancelFeedbackBtn">Cancel</button>
+                <button type="submit" class="btn-modal-submit">
+                    <i class="fa-solid fa-paper-plane"></i>
+                    Submit Experience
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+<!-- ================= ABOUT ================= -->
+<section class="about-section" id="about">
+
+    <div class="about-content">
+        <span>ABOUT SYSTEM</span>
+        <h2>
+            One Platform for
+            <span>College Projects</span>
+        </h2>
+        <p>
+            The Project Monitoring System helps colleges manage the complete
+            project lifecycle. Students can submit and update projects while
+            teachers can monitor progress, review reports and provide feedback.
+        </p>
+
+        <div class="about-points">
+            <div>
+                <i class="fa-solid fa-check"></i>
+                Student Project Registration
+            </div>
+            <div>
+                <i class="fa-solid fa-check"></i>
+                Teacher Project Monitoring
+            </div>
+            <div>
+                <i class="fa-solid fa-check"></i>
+                Real-Time Progress Tracking
+            </div>
+            <div>
+                <i class="fa-solid fa-check"></i>
+                Digital Report Management
+            </div>
+        </div>
+    </div>
+
+    <div class="about-card">
+        <i class="fa-solid fa-diagram-project"></i>
+        <h3>ProjectTrack</h3>
+        <p>
+            Smart project monitoring for modern colleges.
+        </p>
+
+        <div class="mini-stats">
+            <div>
+                <strong>100+</strong>
+                <small>Students</small>
+            </div>
+            <div>
+                <strong>30+</strong>
+                <small>Projects</small>
+            </div>
+            <div>
+                <strong>15+</strong>
+                <small>Teachers</small>
+            </div>
+        </div>
+    </div>
+
+</section>
+
+
+<!-- ================= FOOTER ================= -->
+<footer>
+    <div class="footer-logo">
+        <i class="fa-solid fa-diagram-project"></i>
+        ProjectTrack
+    </div>
+    <p>
+        Web-Based Integrated Project Monitoring Platform
+    </p>
+    <p class="copyright">
+        © 2026 ProjectTrack | CSMSS College Project
+    </p>
+</footer>
+
+<!-- ================= DOT GRID WAVE REMIX PLAYGROUND DRAWER ================= -->
+<div class="dot-wave-playground-drawer" id="dotWavePlayground">
+    <div class="drawer-header">
+        <div class="drawer-title">
+            <i class="fa-solid fa-water" style="color: #818cf8;"></i>
+            <div>
+                <h4>Dot Grid Wave</h4>
+                <p>Real-Time WebGL Shader &bull; Auto-Pauses Off-Screen</p>
+            </div>
+        </div>
+        <button class="drawer-close-btn" onclick="window.DotGridWave && window.DotGridWave.closePlayground()">&times;</button>
+    </div>
+
+    <div class="drawer-body">
+        <!-- Preset Themes -->
+        <div class="control-group">
+            <label><i class="fa-solid fa-palette"></i> Color Presets</label>
+            <div class="preset-chips">
+                <button type="button" class="preset-chip active" data-preset="periwinkle">Cosmic Periwinkle</button>
+                <button type="button" class="preset-chip" data-preset="electricCyan">Electric Cyan</button>
+                <button type="button" class="preset-chip" data-preset="neonEmerald">Neon Emerald</button>
+                <button type="button" class="preset-chip" data-preset="sunsetRose">Sunset Rose</button>
+                <button type="button" class="preset-chip" data-preset="cyberpunkViolet">Cyberpunk Violet</button>
+            </div>
+        </div>
+
+        <!-- Custom Color Inputs -->
+        <div class="control-group-row">
+            <div class="control-group">
+                <label>Crest Glow</label>
+                <div class="color-picker-wrap">
+                    <input type="color" id="pwColorCrest" value="#a5b4fc">
+                    <span>Wave Peaks</span>
+                </div>
+            </div>
+            <div class="control-group">
+                <label>Trough Dot</label>
+                <div class="color-picker-wrap">
+                    <input type="color" id="pwColorTrough" value="#273449">
+                    <span>Base Grid</span>
+                </div>
+            </div>
+            <div class="control-group">
+                <label>Backdrop</label>
+                <div class="color-picker-wrap">
+                    <input type="color" id="pwBgColor" value="#090d18">
+                    <span>Canvas</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Sliders -->
+        <div class="control-group">
+            <div class="slider-label">
+                <span><i class="fa-solid fa-gauge-high"></i> Wave Speed</span>
+                <span id="pwSpeedVal" class="slider-val">1.0x</span>
+            </div>
+            <input type="range" id="pwSpeed" min="0.2" max="3.0" step="0.1" value="1.0">
+        </div>
+
+        <div class="control-group">
+            <div class="slider-label">
+                <span><i class="fa-solid fa-wave-square"></i> Frequency / Wave Density</span>
+                <span id="pwFreqVal" class="slider-val">1.1</span>
+            </div>
+            <input type="range" id="pwFrequency" min="0.4" max="2.5" step="0.1" value="1.1">
+        </div>
+
+        <div class="control-group">
+            <div class="slider-label">
+                <span><i class="fa-solid fa-bolt"></i> Wave Intensity / Contrast</span>
+                <span id="pwIntensityVal" class="slider-val">1.0</span>
+            </div>
+            <input type="range" id="pwIntensity" min="0.4" max="2.2" step="0.1" value="1.0">
+        </div>
+
+        <div class="control-group">
+            <div class="slider-label">
+                <span><i class="fa-solid fa-circle-dot"></i> Dot Spacing</span>
+                <span id="pwSpacingVal" class="slider-val">26px</span>
+            </div>
+            <input type="range" id="pwDotSpacing" min="16" max="44" step="2" value="26">
+        </div>
+
+        <div class="control-group">
+            <div class="slider-label">
+                <span><i class="fa-solid fa-maximize"></i> Max Peak Dot Radius</span>
+                <span id="pwMaxRadiusVal" class="slider-val">4.8px</span>
+            </div>
+            <input type="range" id="pwMaxRadius" min="2.5" max="8.0" step="0.5" value="4.8">
+        </div>
+
+        <!-- Mouse reaction toggle -->
+        <div class="control-group switch-group">
+            <label for="pwMouseReaction"><i class="fa-solid fa-computer-mouse"></i> Interactive Mouse Ripple Wave</label>
+            <input type="checkbox" id="pwMouseReaction" checked>
+        </div>
+
+        <!-- Actions -->
+        <div class="drawer-actions">
+            <button type="button" class="btn-playground-action" id="pwPlayPauseBtn" onclick="window.DotGridWave && window.DotGridWave.togglePause()">
+                <i class="fa-solid fa-pause"></i> Pause
+            </button>
+            <button type="button" class="btn-playground-action" onclick="window.DotGridWave && window.DotGridWave.resetDefaults()">
+                <i class="fa-solid fa-rotate-left"></i> Reset
+            </button>
+            <button type="button" class="btn-playground-action primary" id="pwCopySettingsBtn">
+                <i class="fa-solid fa-copy"></i> Copy Settings
+            </button>
+        </div>
+    </div>
+</div>
+
+<!-- ================= JAVASCRIPT ================= -->
+<script src="script.js"></script>
+<script src="dot-grid-wave.js"></script>
+<script src="testimonial-slider.js"></script>
+
+</body>
+</html>

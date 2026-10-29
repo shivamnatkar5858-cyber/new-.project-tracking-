@@ -1,0 +1,263 @@
+{
+  "projects": [
+    {
+      "id": 1,
+      "project_code": "SIH26103",
+      "title": "Web-Based Integrated Project Monitoring System",
+      "description": "A centralized platform for tracking student final year engineering projects, milestones, documentation, and guide feedback.",
+      "department": "E&ACT",
+      "guide_name": "Prof. A. M. Kadli Mam",
+      "guide_id": 2,
+      "progress": 90,
+      "status": "In Progress",
+      "start_date": "01 Sep 2026",
+      "expected_completion": "30 Nov 2026",
+      "tech_stack": [
+        "Python Flask",
+        "SQLite",
+        "HTML5/CSS3",
+        "REST API",
+        "JavaScript",
+        "Firebase Auth"
+      ],
+      "team_members": [
+        {
+          "id": 1,
+          "name": "Shivam Natkar",
+          "roll_no": "26EACT01",
+          "role": "Team Leader / Full-Stack Developer"
+        },
+        {
+          "id": 2,
+          "name": "Sakshi Arbad",
+          "roll_no": "26EACT02",
+          "role": "UI/UX & Frontend Designer"
+        },
+        {
+          "id": 3,
+          "name": "Tejal Bhanuse",
+          "roll_no": "26EACT03",
+          "role": "Backend & Database Developer"
+        },
+        {
+          "id": 4,
+          "name": "Karan Sangle",
+          "roll_no": "26EACT04",
+          "role": "Testing & Quality Assurance"
+        },
+        {
+          "id": 5,
+          "name": "Abhishek Malwade",
+          "roll_no": "26EACT05",
+          "role": "Documentation & Presentation"
+        }
+      ],
+      "milestones": [
+        {
+          "id": 1,
+          "project_id": 1,
+          "title": "Project Topic Selection & Synopsis Submission",
+          "description": "Problem statement, literature survey, and scope approval",
+          "due_date": "10 Sep 2026",
+          "is_completed": true,
+          "order": 0
+        },
+        {
+          "id": 2,
+          "project_id": 1,
+          "title": "Requirement Analysis & SRS Documentation",
+          "description": "Functional requirements, use cases, and IEEE SRS specification",
+          "due_date": "25 Sep 2026",
+          "is_completed": true,
+          "order": 1
+        },
+        {
+          "id": 3,
+          "project_id": 1,
+          "title": "System Architecture & Database Schema Design",
+          "description": "Relational SQLite tables, DFDs, ER diagrams, and REST contracts",
+          "due_date": "10 Oct 2026",
+          "is_completed": true,
+          "order": 2
+        },
+        {
+          "id": 4,
+          "project_id": 1,
+          "title": "Frontend UI & Backend REST API Implementation",
+          "description": "Full-stack dashboard, auth middleware, and document uploads",
+          "due_date": "25 Oct 2026",
+          "is_completed": true,
+          "order": 3
+        },
+        {
+          "id": 5,
+          "project_id": 1,
+          "title": "Final Presentation, Testing & PPT Defense",
+          "description": "Live project demonstration, final report validation, and PPT presentation",
+          "due_date": "15 Nov 2026",
+          "is_completed": false,
+          "order": 4
+        }
+      ]
+    }
+  ],
+  "feedbacks": [
+    {
+      "id": 1,
+      "project_id": 1,
+      "teacher_name": "Prof. A. M. Kadli Mam",
+      "teacher_id": 2,
+      "message": "Outstanding progress on the Web-Based Integrated Project Monitoring System! The frontend design, Firebase authentication, and backend REST APIs are functioning flawlessly. Current progress is approved at 90%. Best wishes for the class presentation!",
+      "date": "28 Oct 2026",
+      "time": "Just now"
+    },
+    {
+      "id": 2,
+      "project_id": 1,
+      "teacher_name": "Prof. A. M. Kadli Mam",
+      "teacher_id": 2,
+      "message": "Architecture and documentation reviewed. System is ready for live college demonstration.",
+      "date": "26 Oct 2026",
+      "time": "2 days ago"
+    }
+  ],
+  "notifications": [
+    {
+      "id": 1,
+      "project_id": 1,
+      "user_id": 1,
+      "title": "Class Presentation Ready",
+      "message": "Web-Based Integrated Project Monitoring System has reached 90% completion and is ready for live demonstration.",
+      "type": "success",
+      "is_read": false,
+      "created_at": "2026-10-28T16:00:00.000Z",
+      "time": "Just now"
+    },
+    {
+      "id": 2,
+      "project_id": 1,
+      "user_id": 1,
+      "title": "Milestone 4 Approved",
+      "message": "Full-stack REST API and Dashboard implementation marked completed by Prof. A. M. Kadli Mam.",
+      "type": "milestone",
+      "is_read": true,
+      "created_at": "2026-10-27T10:00:00.000Z",
+      "time": "Yesterday"
+    }
+  ],
+  "reports": [
+    {
+      "id": 1,
+      "project_id": 1,
+      "title": "Phase 1 - Project Synopsis & SRS Document",
+      "file_path": "/uploads/Project_SRS_Document_SIH26103.pdf",
+      "original_filename": "Project_SRS_Document_SIH26103.pdf",
+      "status": "Approved",
+      "feedback": "Approved by Prof. A. M. Kadli Mam",
+      "submission_date": "15 Oct 2026"
+    },
+    {
+      "id": 2,
+      "project_id": 1,
+      "title": "Phase 2 - Architecture & Frontend Design Report",
+      "file_path": "/uploads/Frontend_Architecture_Phase2.pdf",
+      "original_filename": "Frontend_Architecture_Phase2.pdf",
+      "status": "Approved",
+      "feedback": "Good UI layout and responsive design.",
+      "submission_date": "24 Oct 2026"
+    },
+    {
+      "id": 3,
+      "project_id": 1,
+      "title": "Final Presentation Slides (PPT)",
+      "file_path": "/uploads/1791732756586_test_slide.pptx",
+      "original_filename": "Web_Based_Project_Monitoring_Presentation.pptx",
+      "status": "Under Review",
+      "feedback": "Slides submitted for final defense evaluation.",
+      "submission_date": "28 Oct 2026"
+    }
+  ],
+  "testimonials": [
+    {
+      "id": 1,
+      "name": "Prof. A. M. Kadli Mam",
+      "role": "teacher",
+      "role_title": "Assistant Professor & Project Coordinator",
+      "department": "E&ACT",
+      "college": "CSMSS Chh. Shahu College of Engineering, Chh. Sambhajinagar",
+      "avatar_color": "#4f46e5",
+      "rating": 5,
+      "quote": "ProjectTrack has streamlined final year project mentoring. Reviewing milestone submissions, giving feedback, and monitoring progress at 90% is transparent and effortless.",
+      "project_or_focus": "Integrated Project Monitoring & Review Management",
+      "impact_tag": "Faculty Verified",
+      "date": "Oct 2026",
+      "verified": true
+    },
+    {
+      "id": 2,
+      "name": "Shivam Natkar",
+      "role": "student",
+      "role_title": "Final Year B.Tech Student & Project Lead",
+      "department": "E&ACT",
+      "college": "CSMSS Chh. Shahu College of Engineering, Chh. Sambhajinagar",
+      "avatar_color": "#06b6d4",
+      "rating": 5,
+      "quote": "Our project Web-Based Integrated Project Monitoring System reached 90% progress smoothly with real-time guide collaboration, milestone tracking, and document submissions.",
+      "project_or_focus": "Web-Based Integrated Project Monitoring System",
+      "impact_tag": "Team Leader - 90% Completed",
+      "date": "Oct 2026",
+      "verified": true
+    }
+  ],
+  "users": {
+    "shivamnatkarcsmss@gmail.com": {
+      "id": 1,
+      "email": "shivamnatkarcsmss@gmail.com",
+      "name": "Shivam Natkar",
+      "roll_no": "26EACT01",
+      "department": "E&ACT",
+      "role": "student",
+      "project_id": 1,
+      "password": "password123"
+    },
+    "student@csmss.edu": {
+      "id": 1,
+      "email": "student@csmss.edu",
+      "name": "Shivam Natkar",
+      "roll_no": "26EACT01",
+      "department": "E&ACT",
+      "role": "student",
+      "project_id": 1,
+      "password": "password123"
+    },
+    "teachercsmss@gmail.com": {
+      "id": 2,
+      "email": "teachercsmss@gmail.com",
+      "name": "Prof. A. M. Kadli Mam",
+      "role": "teacher",
+      "department": "E&ACT",
+      "designation": "Assistant Professor & Project Coordinator",
+      "firebase_uid": "teacher-firebase-uid-001",
+      "password": "password123"
+    },
+    "teacher@csmss.edu": {
+      "id": 2,
+      "email": "teacher@csmss.edu",
+      "name": "Prof. A. M. Kadli Mam",
+      "role": "teacher",
+      "department": "E&ACT",
+      "designation": "Assistant Professor & Project Coordinator",
+      "password": "password123"
+    },
+    "kadli@csmss.edu": {
+      "id": 2,
+      "email": "kadli@csmss.edu",
+      "name": "Prof. A. M. Kadli Mam",
+      "role": "teacher",
+      "department": "E&ACT",
+      "designation": "Assistant Professor & Project Coordinator",
+      "password": "password123"
+    }
+  },
+  "lastUpdated": "2026-10-28T16:35:00.000Z"
+}

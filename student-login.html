@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Student Login | ProjectTrack</title>
+
+    <!-- Google Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <!-- Student Login CSS -->
+    <link rel="stylesheet" href="student-login.css">
+</head>
+
+<body>
+
+<!-- ================= MAIN LOGIN CONTAINER ================= -->
+<div class="login-container">
+
+    <!-- ================= LEFT SIDE ================= -->
+    <section class="login-info">
+
+        <!-- BRAND -->
+        <div class="brand">
+            <i class="fa-solid fa-diagram-project"></i>
+            <span>
+                Project<span>Track</span>
+            </span>
+        </div>
+
+        <!-- INFORMATION CONTENT -->
+        <div class="info-content">
+
+            <!-- STUDENT ICON -->
+            <div class="student-icon">
+                <i class="fa-solid fa-user-graduate"></i>
+            </div>
+
+            <!-- HEADING -->
+            <h1>
+                Student Login
+            </h1>
+
+            <!-- DESCRIPTION -->
+            <p>
+                Login to manage your college projects,
+                track progress, upload reports and
+                communicate with your project guide.
+            </p>
+
+            <!-- FEATURES -->
+            <div class="features">
+                <div>
+                    <i class="fa-solid fa-circle-check"></i>
+                    <span>Manage Your Projects</span>
+                </div>
+                <div>
+                    <i class="fa-solid fa-circle-check"></i>
+                    <span>Track Project Progress</span>
+                </div>
+                <div>
+                    <i class="fa-solid fa-circle-check"></i>
+                    <span>Upload Project Reports</span>
+                </div>
+                <div>
+                    <i class="fa-solid fa-circle-check"></i>
+                    <span>View Teacher Feedback</span>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- COLLEGE TEXT -->
+        <div class="college-text">
+            CSMSS College Project Monitoring System
+        </div>
+
+    </section>
+
+    <!-- ================= RIGHT SIDE ================= -->
+    <section class="login-section">
+
+        <!-- LOGIN CARD -->
+        <div class="login-card">
+
+            <!-- MOBILE LOGO -->
+            <div class="mobile-logo">
+                <i class="fa-solid fa-diagram-project"></i>
+            </div>
+
+            <!-- AUTH MODE TABS -->
+            <div class="auth-tabs">
+                <button type="button" class="auth-tab-btn active" id="tabSignIn" onclick="switchAuthTab('signin')">
+                    <i class="fa-solid fa-right-to-bracket"></i> Sign In
+                </button>
+                <button type="button" class="auth-tab-btn" id="tabSignUp" onclick="switchAuthTab('signup')">
+                    <i class="fa-solid fa-user-plus"></i> Register as Student
+                </button>
+            </div>
+
+            <!-- ================= SIGN IN CONTAINER ================= -->
+            <div id="signInContainer">
+                <!-- LOGIN HEADING -->
+                <h2>Welcome Back!</h2>
+                <p class="subtitle">Login to your student account</p>
+
+                <!-- LOGIN FORM -->
+                <form id="studentLoginForm">
+
+                    <!-- EMAIL -->
+                    <div class="form-group">
+                        <label for="email">Student Email</label>
+                        <div class="input-wrapper">
+                            <i class="fa-solid fa-envelope"></i>
+                            <input
+                                type="email"
+                                id="email"
+                                name="email"
+                                placeholder="Enter your college email (e.g. shivamnatkarcsmss@gmail.com)"
+                                value="shivamnatkarcsmss@gmail.com"
+                                autocomplete="email"
+                                required>
+                        </div>
+                    </div>
+
+                    <!-- PASSWORD -->
+                    <div class="form-group">
+                        <div class="password-label">
+                            <label for="password">Password</label>
+                            <a href="#" onclick="forgotPassword(event)">Forgot Password?</a>
+                        </div>
+                        <div class="input-wrapper">
+                            <i class="fa-solid fa-lock"></i>
+                            <input
+                                type="password"
+                                id="password"
+                                name="password"
+                                placeholder="Enter your password"
+                                value="Shivam0003"
+                                autocomplete="current-password"
+                                required>
+                            <button
+                                type="button"
+                                class="show-password"
+                                id="showPasswordBtn"
+                                onclick="togglePassword()"
+                                aria-label="Show password">
+                                <i class="fa-solid fa-eye"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- REMEMBER ME -->
+                    <div class="remember">
+                        <label>
+                            <input type="checkbox" id="remember" name="remember" checked>
+                            <span>Remember me</span>
+                        </label>
+                    </div>
+
+                    <!-- LOGIN BUTTON -->
+                    <button type="submit" class="login-button" id="loginButton">
+                        <span>Login as Student</span>
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </button>
+
+                    <!-- GOOGLE SIGN-IN BUTTON -->
+                    <button type="button" class="google-login-button" id="googleLoginBtn" onclick="loginWithGoogle('shivamnatkarcsmss@gmail.com')">
+                        <svg width="20" height="20" viewBox="0 0 24 24">
+                            <path fill="#4285F4" d="M23.745 12.27c0-.7-.06-1.4-.19-2.07H12v4.51h6.6c-.29 1.52-1.14 2.8-2.4 3.65v3.05h3.88c2.27-2.09 3.665-5.17 3.665-9.14z"/>
+                            <path fill="#34A853" d="M12 24c3.24 0 5.95-1.08 7.93-2.91l-3.88-3.05c-1.08.72-2.45 1.16-4.05 1.16-3.12 0-5.77-2.1-6.72-4.93H1.26v3.15C3.25 21.36 7.33 24 12 24z"/>
+                            <path fill="#FBBC05" d="M5.28 14.27c-.25-.72-.38-1.49-.38-2.27s.13-1.55.38-2.27V6.58H1.26C.46 8.17 0 9.99 0 12s.46 3.83 1.26 5.42l4.02-3.15z"/>
+                            <path fill="#EA4335" d="M12 4.75c1.77 0 3.35.61 4.6 1.8l3.42-3.42C17.95 1.19 15.24 0 12 0 7.33 0 3.25 2.64 1.26 6.58l4.02 3.15c.95-2.83 3.6-4.98 6.72-4.98z"/>
+                        </svg>
+                        <span>Sign in with Google (shivamnatkarcsmss@gmail.com)</span>
+                    </button>
+
+                    <!-- PROMINENT REGISTRATION CALLOUT -->
+                    <div class="registration-callout-card">
+                        <div class="registration-callout-text">
+                            <span>Don't have an account yet?</span>
+                            <strong>Student Registration & Project Enrollment</strong>
+                        </div>
+                        <button type="button" class="btn-register-link" onclick="switchAuthTab('signup')">
+                            <i class="fa-solid fa-user-plus"></i>
+                            <span>Register as New Student</span>
+                        </button>
+                    </div>
+
+                </form>
+            </div>
+
+            <!-- ================= REGISTER & CREATE PROJECT CONTAINER ================= -->
+            <div id="signUpContainer" style="display: none;">
+                <h2>Create Account & Project</h2>
+                <p class="subtitle">Enter your project title and add all group members</p>
+
+                <form id="studentRegisterForm">
+
+                    <!-- NAME & ROLL NO -->
+                    <div class="form-row-2">
+                        <div class="form-group">
+                            <label for="regName">Your Full Name (Leader)</label>
+                            <div class="input-wrapper">
+                                <i class="fa-solid fa-user"></i>
+                                <input type="text" id="regName" placeholder="e.g. Shivam Natkar" value="Shivam Natkar" required>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="regRollNo">Roll No</label>
+                            <div class="input-wrapper">
+                                <i class="fa-solid fa-id-card"></i>
+                                <input type="text" id="regRollNo" placeholder="e.g. 26EACT01" value="26EACT01" required>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- EMAIL & DEPT -->
+                    <div class="form-row-2">
+                        <div class="form-group">
+                            <label for="regEmail">College Email</label>
+                            <div class="input-wrapper">
+                                <i class="fa-solid fa-envelope"></i>
+                                <input type="email" id="regEmail" placeholder="e.g. shivam@csmss.edu" value="shivamnatkarcsmss@gmail.com" required>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="regDept">Department</label>
+                            <div class="input-wrapper">
+                                <i class="fa-solid fa-building-columns"></i>
+                                <input type="text" id="regDept" placeholder="e.g. E&ACT" value="E&ACT" required>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- PROJECT NAME (TITLE) -->
+                    <div class="form-group">
+                        <label for="regProjectName" style="color: #4f46e5; font-weight: 700;">
+                            <i class="fa-solid fa-diagram-project"></i> Project Name / Title
+                        </label>
+                        <div class="input-wrapper" style="border-color: #c7d2fe;">
+                            <i class="fa-solid fa-lightbulb" style="color: #4f46e5;"></i>
+                            <input
+                                type="text"
+                                id="regProjectName"
+                                placeholder="e.g. AI-Powered Smart Campus Monitoring System"
+                                value="Web-Based Project Monitoring System"
+                                required>
+                        </div>
+                    </div>
+
+                    <!-- FACULTY GUIDE -->
+                    <div class="form-group">
+                        <label for="regGuideName">Faculty Guide Name</label>
+                        <div class="input-wrapper">
+                            <i class="fa-solid fa-chalkboard-user"></i>
+                            <input type="text" id="regGuideName" placeholder="e.g. Prof. D. K. Kadam" value="Prof. D. K. Kadam">
+                        </div>
+                    </div>
+
+                    <!-- GROUP MEMBERS LIST (REAL-TIME DYNAMIC ADD) -->
+                    <div class="group-members-box">
+                        <div class="group-members-header">
+                            <strong><i class="fa-solid fa-users"></i> Project Group Members</strong>
+                            <button type="button" class="btn-add-member" onclick="addNewMemberRow()">
+                                <i class="fa-solid fa-plus"></i> Add Member
+                            </button>
+                        </div>
+                        <div id="groupMembersList">
+                            <!-- Populated dynamically via JS -->
+                        </div>
+                    </div>
+
+                    <!-- PASSWORD -->
+                    <div class="form-group">
+                        <label for="regPassword">Create Account Password</label>
+                        <div class="input-wrapper">
+                            <i class="fa-solid fa-lock"></i>
+                            <input type="password" id="regPassword" placeholder="Minimum 6 characters" required>
+                        </div>
+                    </div>
+
+                    <!-- SUBMIT BUTTON -->
+                    <button type="submit" class="login-button" id="registerButton" style="background: linear-gradient(135deg, #059669, #0284c7);">
+                        <span><i class="fa-solid fa-user-plus"></i> Complete Student Registration</span>
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </button>
+
+                    <!-- BACK TO SIGN IN -->
+                    <div class="login-switch-callout">
+                        Already have a student account? <a href="#" onclick="switchAuthTab('signin'); return false;">Sign In here &rarr;</a>
+                    </div>
+
+                </form>
+            </div>
+
+            <!-- ================= EMAIL VERIFICATION SCREEN (FIREBASE AUTHENTICATION ONLY) ================= -->
+            <div id="verificationScreenContainer" style="display: none;">
+                <div class="verification-screen-card">
+                    <div class="verification-icon-wrap">
+                        <div class="verification-icon-circle">
+                            <i class="fa-solid fa-envelope-circle-check"></i>
+                        </div>
+                        <div class="verification-pulse-ring"></div>
+                    </div>
+
+                    <h2 class="verification-title">Verify Your Email Address</h2>
+                    <div class="firebase-auth-badge">
+                        <i class="fa-solid fa-fire-flame-curved"></i> Firebase Authentication Only
+                    </div>
+
+                    <!-- Required exact message:
+                         “We have sent you a verification email to [user email]. Please verify it and log in.” -->
+                    <div class="verification-message-box">
+                        <p>
+                            “We have sent you a verification email to <span class="verification-target-email" id="verificationUserEmail">user@example.com</span>. Please verify it and log in.”
+                        </p>
+                    </div>
+
+                    <!-- Notification Banner for actions -->
+                    <div id="verificationFeedbackBanner" style="display: none; padding: 0.75rem 1rem; border-radius: 8px; font-size: 0.88rem; margin-bottom: 1rem; text-align: left;"></div>
+
+                    <!-- Instant Verification Button (Solves blocking for simulated/test emails) -->
+                    <button type="button" class="btn-simulate-action" id="btnSimulateVerify" onclick="simulateVerifyCurrentEmail()" style="width: 100%; margin-bottom: 0.85rem; padding: 0.8rem 1rem; border-radius: 8px; background: #059669; color: white; font-weight: 600; font-size: 0.95rem; border: none; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px; box-shadow: 0 4px 12px rgba(5, 150, 105, 0.25); transition: all 0.2s;">
+                        <i class="fa-solid fa-envelope-circle-check"></i>
+                        <span>Click to Verify Email (Instant Access)</span>
+                    </button>
+
+                    <!-- PRIMARY LOGIN BUTTON (Mandatory requirement) -->
+                    <button type="button" class="btn-verification-login" id="verificationLoginBtn" onclick="goToLoginFromVerification()">
+                        <i class="fa-solid fa-right-to-bracket"></i>
+                        <span>Login & Enter Project Dashboard</span>
+                    </button>
+
+                    <!-- Secondary Controls: Resend email or register again -->
+                    <div class="verification-actions">
+                        <button type="button" class="btn-resend-action" id="resendVerificationBtn" onclick="resendVerificationEmail()">
+                            <i class="fa-solid fa-paper-plane"></i>
+                            <span id="resendBtnText">Resend Verification Email</span>
+                        </button>
+                        <button type="button" class="btn-switch-action" onclick="switchAuthTab('signup')">
+                            <i class="fa-solid fa-user-plus"></i> Register Another Email
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- DIVIDER -->
+            <div class="divider">
+                <span>OR</span>
+            </div>
+
+            <!-- TEACHER LOGIN -->
+            <div class="other-login">
+                <p>Are you a teacher?</p>
+                <a href="teacher-login.html">
+                    Teacher Login
+                    <i class="fa-solid fa-arrow-right"></i>
+                </a>
+            </div>
+
+            <!-- BACK HOME -->
+            <a href="index.html" class="back-home">
+                <i class="fa-solid fa-arrow-left"></i>
+                <span>Back to Home</span>
+            </a>
+
+        </div>
+
+    </section>
+
+</div>
+
+<!-- ================= POST-LOGIN PROJECT & GROUP SETUP MODAL ================= -->
+<div class="modal-overlay" id="postLoginSetupModal">
+    <div class="modal-card">
+        <div class="modal-header">
+            <h3><i class="fa-solid fa-folder-plus"></i> Set Up Project & Group Members</h3>
+            <button type="button" class="modal-close-btn" onclick="closeSetupModalAndRedirect()">&times;</button>
+        </div>
+        <div class="modal-body">
+            <p style="font-size: 0.9rem; color: #64748b; margin-bottom: 1.2rem;">
+                Welcome! Update your official project name and specify your group team members. These will be immediately stored in the live database.
+            </p>
+
+            <form id="postLoginSetupForm">
+                <div class="form-group">
+                    <label for="setupProjectName" style="color: #4f46e5; font-weight: 700;">Project Name / Title</label>
+                    <div class="input-wrapper">
+                        <i class="fa-solid fa-lightbulb" style="color: #4f46e5;"></i>
+                        <input type="text" id="setupProjectName" placeholder="Enter project name" value="Web-Based Project Monitoring System" required>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="setupGuideName">Faculty Guide Name</label>
+                    <div class="input-wrapper">
+                        <i class="fa-solid fa-chalkboard-user"></i>
+                        <input type="text" id="setupGuideName" placeholder="Faculty Guide" value="Prof. D. K. Kadam">
+                    </div>
+                </div>
+
+                <div class="group-members-box">
+                    <div class="group-members-header">
+                        <strong><i class="fa-solid fa-users"></i> Project Group Members</strong>
+                        <button type="button" class="btn-add-member" onclick="addModalMemberRow()">
+                            <i class="fa-solid fa-plus"></i> Add Member
+                        </button>
+                    </div>
+                    <div id="modalMembersList">
+                        <!-- Populated dynamically via JS -->
+                    </div>
+                </div>
+
+                <div class="modal-actions">
+                    <button type="button" class="btn-secondary-action" onclick="closeSetupModalAndRedirect()">Skip to Dashboard</button>
+                    <button type="submit" class="btn-primary-action" id="saveSetupBtn">Save & Go to Dashboard &rarr;</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- JAVASCRIPT -->
+<script type="module" src="student-login.js"></script>
+
+</body>
+</html>

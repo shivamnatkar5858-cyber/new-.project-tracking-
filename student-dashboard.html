@@ -1,0 +1,667 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Student Project Dashboard | ProjectTrack</title>
+
+    <!-- Google Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <!-- Dashboard CSS -->
+    <link rel="stylesheet" href="student-dashboard.css">
+</head>
+
+<body>
+
+<!-- ================= NAVBAR ================= -->
+<header class="navbar">
+
+    <div class="logo" onclick="window.location.href='index.html'">
+        <i class="fa-solid fa-diagram-project"></i>
+        Project<span class="logo-highlight">Track</span>
+    </div>
+
+    <div class="nav-right">
+        <span class="student-name">
+            <i class="fa-solid fa-user-graduate"></i>
+            <span id="studentName">
+                Shivam Natkar
+            </span>
+        </span>
+
+        <button class="logout-btn" onclick="logout()">
+            <i class="fa-solid fa-right-from-bracket"></i>
+            Logout
+        </button>
+    </div>
+
+</header>
+
+
+<!-- ================= MAIN CONTAINER ================= -->
+<main class="container">
+
+    <!-- ================= WELCOME ================= -->
+    <div class="welcome">
+        <h1>
+            Student Project Dashboard
+        </h1>
+        <p>
+            Manage your project, update progress and view teacher feedback.
+        </p>
+    </div>
+
+
+    <!-- ================= STATISTICS ================= -->
+    <div class="stats-grid">
+
+        <!-- PROJECTS -->
+        <div class="stat-card">
+            <div class="stat-icon">
+                <i class="fa-solid fa-folder-open"></i>
+            </div>
+            <div>
+                <h4>My Projects</h4>
+                <strong id="totalProjects">1</strong>
+            </div>
+        </div>
+
+        <!-- IN PROGRESS -->
+        <div class="stat-card">
+            <div class="stat-icon">
+                <i class="fa-solid fa-spinner"></i>
+            </div>
+            <div>
+                <h4>In Progress</h4>
+                <strong id="inProgress">1</strong>
+            </div>
+        </div>
+
+        <!-- COMPLETED -->
+        <div class="stat-card">
+            <div class="stat-icon">
+                <i class="fa-solid fa-circle-check"></i>
+            </div>
+            <div>
+                <h4>Completed</h4>
+                <strong id="completed">0</strong>
+            </div>
+        </div>
+
+        <!-- PROGRESS -->
+        <div class="stat-card">
+            <div class="stat-icon">
+                <i class="fa-solid fa-chart-line"></i>
+            </div>
+            <div>
+                <h4>Overall Progress</h4>
+                <strong id="overallProgress">90%</strong>
+            </div>
+        </div>
+
+    </div>
+
+
+    <!-- ================= DASHBOARD GRID ================= -->
+    <div class="dashboard-grid">
+
+        <!-- ================= LEFT COLUMN ================= -->
+        <div>
+
+            <!-- ================= PROJECT ================= -->
+            <div class="box">
+
+                <div class="box-title" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;">
+                    <h2>
+                        <i class="fa-solid fa-folder"></i>
+                        My Project
+                    </h2>
+                    <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+                        <button class="action-btn" onclick="openAddMemberModal()" style="font-size: 0.85rem; padding: 0.5rem 0.9rem; background: #0284c7;">
+                            <i class="fa-solid fa-user-plus"></i>
+                            Add Group Member
+                        </button>
+                        <button class="action-btn" onclick="openProjectModal()" style="font-size: 0.85rem; padding: 0.5rem 0.9rem;">
+                            <i class="fa-solid fa-pen-to-square"></i>
+                            Edit Project Details
+                        </button>
+                        <button class="action-btn secondary" onclick="openSendPptModal()" style="font-size: 0.85rem; padding: 0.5rem 0.9rem; border-color: #ea580c; color: #ea580c;">
+                            <i class="fa-solid fa-file-powerpoint"></i>
+                            Send PPT
+                        </button>
+                    </div>
+                </div>
+
+                <!-- PROJECT HEADER -->
+                <div class="project-header">
+                    <div>
+                        <h3 id="projectTitleDisplay">
+                            Web-Based Project Monitoring System
+                        </h3>
+                        <p class="project-description" id="projectDescDisplay">
+                            Integrated college project monitoring platform
+                        </p>
+                    </div>
+
+                    <span class="status" id="projectStatus">
+                        In Progress
+                    </span>
+                </div>
+
+                <!-- ================= PROJECT DETAILS ================= -->
+                <div class="project-details">
+
+                    <div class="detail">
+                        <small>Project ID</small>
+                        <strong id="projectIdDisplay">SIH26103</strong>
+                    </div>
+
+                    <div class="detail">
+                        <small>Department</small>
+                        <strong id="projectDeptDisplay">E&ACT</strong>
+                    </div>
+
+                    <div class="detail">
+                        <small>Project Guide</small>
+                        <strong id="projectGuideDisplay">Prof. A. M. Kadli Mam</strong>
+                    </div>
+
+                    <div class="detail">
+                        <small>Team Members</small>
+                        <strong id="projectTeamDisplay">
+                            1. Shivam Natkar<br>
+                            2. Sakshi Arbad<br>
+                            3. Tejal Bhanuse<br>
+                            4. Karan Sangle<br>
+                            5. Abhishek Malwade
+                        </strong>
+                    </div>
+
+                    <div class="detail">
+                        <small>Start Date</small>
+                        <strong id="projectStartDateDisplay">01 Sep 2026</strong>
+                    </div>
+
+                    <div class="detail">
+                        <small>Expected Completion</small>
+                        <strong id="projectDeadlineDisplay">30 Nov 2026</strong>
+                    </div>
+
+                </div>
+
+                <!-- ================= PROGRESS ================= -->
+                <div class="progress-section">
+                    <div class="progress-heading">
+                        <span>Project Progress</span>
+                        <strong id="progressText">90%</strong>
+                    </div>
+
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="progressFill" style="width: 90%"></div>
+                    </div>
+                </div>
+
+                <!-- ================= UPDATE PROGRESS ================= -->
+                <div class="update-box">
+                    <label for="progressRange">
+                        Update Project Progress
+                    </label>
+
+                    <input
+                        type="range"
+                        min="0"
+                        max="100"
+                        value="90"
+                        id="progressRange"
+                        class="range">
+                </div>
+
+                <!-- ================= ACTION BUTTONS ================= -->
+                <div class="actions">
+                    <button class="action-btn" onclick="saveProgress()">
+                        <i class="fa-solid fa-save"></i>
+                        Save Progress
+                    </button>
+
+                    <button class="action-btn secondary" onclick="viewProject()">
+                        <i class="fa-solid fa-eye"></i>
+                        Project Details
+                    </button>
+                </div>
+
+            </div>
+
+            <!-- ================= MILESTONES ================= -->
+            <div class="box milestone-box">
+
+                <div class="box-title">
+                    <h2>
+                        <i class="fa-solid fa-list-check"></i>
+                        Project Milestones
+                    </h2>
+                </div>
+
+                <div class="milestone">
+                    <i class="fa-solid fa-circle-check"></i>
+                    <span>Project Topic Selection</span>
+                </div>
+
+                <div class="milestone">
+                    <i class="fa-solid fa-circle-check"></i>
+                    <span>Requirement Analysis</span>
+                </div>
+
+                <div class="milestone">
+                    <i class="fa-solid fa-circle-check"></i>
+                    <span>System Design</span>
+                </div>
+
+                <div class="milestone">
+                    <i class="fa-solid fa-circle-check"></i>
+                    <span>Frontend Development</span>
+                </div>
+
+                <div class="milestone pending">
+                    <i class="fa-regular fa-circle"></i>
+                    <span>Backend Development</span>
+                </div>
+
+                <div class="milestone pending">
+                    <i class="fa-regular fa-circle"></i>
+                    <span>Testing & Final Report</span>
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- ================= RIGHT COLUMN ================= -->
+        <div>
+
+            <!-- ================= TEACHER FEEDBACK ================= -->
+            <div class="box">
+
+                <div class="box-title">
+                    <h2>
+                        <i class="fa-solid fa-comments"></i>
+                        Teacher Feedback
+                    </h2>
+                </div>
+
+                <div class="feedback">
+                    <strong>Prof. A. M. Kadli Mam</strong>
+                    <p>
+                        Outstanding progress on the Web-Based Integrated Project Monitoring System! Frontend and backend REST APIs are functioning smoothly. Progress approved at 90% for your class presentation.
+                    </p>
+                </div>
+
+                <div class="feedback">
+                    <strong>Prof. A. M. Kadli Mam</strong>
+                    <p>
+                        Architecture and documentation reviewed. System is ready for live college demonstration.
+                    </p>
+                </div>
+
+            </div>
+
+            <!-- ================= REPORT UPLOAD ================= -->
+            <div class="box report-box">
+
+                <div class="box-title">
+                    <h2>
+                        <i class="fa-solid fa-file-arrow-up"></i>
+                        Upload Report
+                    </h2>
+                </div>
+
+                <div class="upload-area" onclick="document.getElementById('reportFile').click()">
+                    <i class="fa-solid fa-cloud-arrow-up"></i>
+                    <p>Select your project report (.pdf, .docx, .ppt)</p>
+                    <input
+                        type="file"
+                        id="reportFile"
+                        accept=".pdf,.doc,.docx,.ppt,.pptx"
+                        onclick="event.stopPropagation()">
+                </div>
+
+                <div class="actions">
+                    <button class="action-btn" onclick="uploadReport()">
+                        <i class="fa-solid fa-upload"></i>
+                        Upload
+                    </button>
+                </div>
+
+            </div>
+
+            <!-- ================= NOTIFICATIONS ================= -->
+            <div class="box notification-box">
+
+                <div class="box-title">
+                    <h2>
+                        <i class="fa-solid fa-bell"></i>
+                        Notifications
+                    </h2>
+                </div>
+
+                <div class="feedback">
+                    <strong>Project Review</strong>
+                    <p>
+                        Project review meeting scheduled this week.
+                    </p>
+                </div>
+
+                <div class="feedback">
+                    <strong>Report Deadline</strong>
+                    <p>
+                        Submit your progress report before the deadline.
+                    </p>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- ================= MY FILES (FIREBASE STORAGE + FIRESTORE) ================= -->
+    <div class="box files-box" id="myFilesSection">
+        <div class="box-title files-box-header">
+            <div>
+                <h2>
+                    <i class="fa-solid fa-folder-open"></i>
+                    My Files
+                </h2>
+                <p class="section-desc">
+                    Cloud-synced files stored securely with Firebase Storage & Firestore metadata.
+                </p>
+            </div>
+            <div>
+                <button class="action-btn" id="openUploadModalBtn" onclick="openUploadModal()">
+                    <i class="fa-solid fa-cloud-arrow-up"></i>
+                    Add File
+                </button>
+            </div>
+        </div>
+
+        <!-- Table -->
+        <div class="table-responsive">
+            <table class="files-table" id="myFilesTable">
+                <thead>
+                    <tr>
+                        <th>File Name</th>
+                        <th>Type</th>
+                        <th>Size</th>
+                        <th>Uploaded</th>
+                        <th style="text-align: right;">Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="filesTableBody">
+                    <!-- Populated dynamically via Firestore users/{uid}/files -->
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Loading spinner -->
+        <div id="filesLoading" class="files-loading-state" style="display: none;">
+            <i class="fa-solid fa-spinner fa-spin"></i>
+            <span>Loading files from Firebase...</span>
+        </div>
+
+        <!-- Empty state -->
+        <div id="noFilesMsg" class="empty-files-state" style="display: none;">
+            <div class="empty-icon-wrap">
+                <i class="fa-regular fa-folder-open"></i>
+            </div>
+            <h3>No files uploaded yet</h3>
+            <p>Upload project reports, diagrams, presentations, and code archives.</p>
+            <button class="action-btn secondary" onclick="openUploadModal()">
+                <i class="fa-solid fa-plus"></i> Upload First File
+            </button>
+        </div>
+    </div>
+
+</main>
+
+<!-- ================= UPLOAD FILE IN-APP MODAL ================= -->
+<div class="modal-overlay" id="uploadFileModal" style="display: none;">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h3><i class="fa-solid fa-cloud-arrow-up"></i> Upload File</h3>
+            <button class="modal-close-btn" onclick="closeUploadModal()" type="button" aria-label="Close modal">&times;</button>
+        </div>
+
+        <div class="modal-body">
+            <!-- Inline Error Box (No alert) -->
+            <div id="uploadModalError" class="modal-inline-error" style="display: none;"></div>
+
+            <!-- Dropzone with hidden file input -->
+            <div class="modal-dropzone" id="modalDropzone" onclick="document.getElementById('hiddenFileInput').click()">
+                <input
+                    type="file"
+                    id="hiddenFileInput"
+                    style="display: none;"
+                    onchange="handleFileSelected(event)">
+                <i class="fa-solid fa-file-circle-plus"></i>
+                <p class="dropzone-title">Click to choose a file or drag & drop</p>
+                <span class="dropzone-subtitle" id="selectedFileInfo">
+                    Supports documents, code, archives, PDFs, presentations, and images
+                </span>
+            </div>
+
+            <!-- Optional: Select folder -->
+            <div class="modal-form-group">
+                <label for="fileFolderSelect">Select Folder (Optional)</label>
+                <select id="fileFolderSelect" class="modal-select">
+                    <option value="">Root / General Project Files</option>
+                    <option value="documentation">Project Documentation</option>
+                    <option value="reports">Weekly Progress Reports</option>
+                    <option value="source_code">Source Code & Schematics</option>
+                    <option value="presentations">Presentations & Slides</option>
+                </select>
+            </div>
+
+            <!-- Upload Progress Indicator -->
+            <div id="uploadProgressContainer" class="upload-progress-container" style="display: none;">
+                <div class="progress-info">
+                    <span id="uploadProgressText">Uploading: 0%</span>
+                    <span id="uploadStatusBadge" class="status-badge">
+                        <i class="fa-solid fa-spinner fa-spin"></i> In progress
+                    </span>
+                </div>
+                <div class="progress-bar-wrap">
+                    <div id="uploadProgressBar" class="progress-bar-fill" style="width: 0%;"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal-footer">
+            <button type="button" class="action-btn secondary" id="cancelUploadBtn" onclick="closeUploadModal()">
+                Cancel
+            </button>
+            <button type="button" class="action-btn" id="startUploadBtn" onclick="uploadSelectedFile()">
+                <i class="fa-solid fa-upload"></i> Upload
+            </button>
+        </div>
+    </div>
+</div>
+
+<!-- ================= EDIT PROJECT DETAILS MODAL ================= -->
+<div class="modal-overlay" id="editProjectModal" style="display: none;">
+    <div class="modal-content" style="max-width: 620px;">
+        <div class="modal-header">
+            <h3><i class="fa-solid fa-pen-to-square" style="color: var(--primary);"></i> Edit Project Details</h3>
+            <button class="modal-close-btn" onclick="closeProjectModal()" type="button" aria-label="Close modal">&times;</button>
+        </div>
+
+        <div class="modal-body" style="max-height: 75vh; overflow-y: auto;">
+            <div id="projectModalError" class="modal-inline-error" style="display: none;"></div>
+
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 12px;">
+                <div class="modal-form-group">
+                    <label for="editProjectCode">Project Code / ID</label>
+                    <input type="text" id="editProjectCode" class="modal-select" style="padding: 0.65rem;" value="SIH26103" required>
+                </div>
+                <div class="modal-form-group">
+                    <label for="editProjectDept">Department</label>
+                    <input type="text" id="editProjectDept" class="modal-select" style="padding: 0.65rem;" value="E&ACT" required>
+                </div>
+            </div>
+
+            <div class="modal-form-group" style="margin-bottom: 12px;">
+                <label for="editProjectTitle">Project Title</label>
+                <input type="text" id="editProjectTitle" class="modal-select" style="padding: 0.65rem; width: 100%;" value="Web-Based Integrated Project Monitoring System" required>
+            </div>
+
+            <div style="display: grid; grid-template-columns: 1.2fr 1fr; gap: 12px; margin-bottom: 12px;">
+                <div class="modal-form-group">
+                    <label for="editProjectGuide">Faculty Guide Name</label>
+                    <input type="text" id="editProjectGuide" class="modal-select" style="padding: 0.65rem;" value="Prof. A. M. Kadli Mam" required>
+                </div>
+                <div class="modal-form-group">
+                    <label for="editProjectDeadline">Expected Completion</label>
+                    <input type="text" id="editProjectDeadline" class="modal-select" style="padding: 0.65rem;" value="30 Nov 2026" required>
+                </div>
+            </div>
+
+            <div class="modal-form-group" style="margin-bottom: 12px;">
+                <label for="editProjectStatus">Project Status</label>
+                <select id="editProjectStatus" class="modal-select">
+                    <option value="In Progress">In Progress</option>
+                    <option value="Completed">Completed</option>
+                    <option value="Under Review">Under Review</option>
+                    <option value="At Risk">At Risk</option>
+                </select>
+            </div>
+
+            <div class="modal-form-group" style="margin-bottom: 12px;">
+                <label for="editProjectDesc">Project Abstract & Description</label>
+                <textarea id="editProjectDesc" class="modal-select" rows="3" style="width: 100%; padding: 0.65rem; resize: vertical;" placeholder="Enter project description and scope...">Integrated college project monitoring platform enabling students to submit progress reports, upload project documentation, track milestones, and receive real-time guide feedback.</textarea>
+            </div>
+
+            <div class="modal-form-group">
+                <label for="editProjectTeam">Team Members (One per line: Name - Role)</label>
+                <textarea id="editProjectTeam" class="modal-select" rows="5" style="width: 100%; padding: 0.65rem; resize: vertical;" placeholder="1. Shivam Natkar - Team Leader&#10;2. Sakshi Arbad - UI/UX Designer&#10;3. Tejal Bhanuse - Backend Developer&#10;4. Karan Sangle - QA Tester&#10;5. Abhishek Malwade - Documentation">Shivam Natkar - Team Leader / Full-Stack
+Sakshi Arbad - UI/UX & Frontend Designer
+Tejal Bhanuse - Backend & Database Developer
+Karan Sangle - Testing & QA
+Abhishek Malwade - Documentation & Presentation</textarea>
+                <small style="color: #64748b; font-size: 0.78rem;">Each team member listed will be displayed in your project overview.</small>
+            </div>
+        </div>
+
+        <div class="modal-footer">
+            <button type="button" class="action-btn secondary" onclick="closeProjectModal()">
+                Cancel
+            </button>
+            <button type="button" class="action-btn" id="saveProjectBtn" onclick="saveProjectModalDetails()">
+                <i class="fa-solid fa-floppy-disk"></i> Save Project Details
+            </button>
+        </div>
+    </div>
+</div>
+
+<!-- ================= SEND PPT / PRESENTATION MODAL ================= -->
+<div class="modal-overlay" id="sendPptModal" style="display: none;">
+    <div class="modal-content" style="max-width: 560px;">
+        <div class="modal-header">
+            <h3><i class="fa-solid fa-file-powerpoint" style="color: #ea580c;"></i> Send PPT / Presentation Files</h3>
+            <button class="modal-close-btn" onclick="closeSendPptModal()" type="button" aria-label="Close modal">&times;</button>
+        </div>
+
+        <div class="modal-body">
+            <div id="pptModalError" class="modal-inline-error" style="display: none;"></div>
+
+            <div class="modal-form-group" style="margin-bottom: 12px;">
+                <label for="pptTitleInput">Presentation Title</label>
+                <input type="text" id="pptTitleInput" class="modal-select" style="padding: 0.65rem; width: 100%;" placeholder="e.g. SIH26103 - Project Synopsis & Architecture PPT" value="SIH26103 - Progress Review PPT" required>
+            </div>
+
+            <div class="modal-form-group" style="margin-bottom: 12px;">
+                <label for="pptStageSelect">Review Stage / Milestone</label>
+                <select id="pptStageSelect" class="modal-select">
+                    <option value="Topic & Synopsis Review">Topic & Synopsis Review</option>
+                    <option value="System Design & Architecture">System Design & Architecture</option>
+                    <option value="Mid-Term Progress Review" selected>Mid-Term Progress Review</option>
+                    <option value="Final Project Presentation">Final Project Presentation / Defense</option>
+                </select>
+            </div>
+
+            <!-- File Drop Area -->
+            <div class="modal-dropzone" id="pptDropzone" onclick="document.getElementById('pptFileInput').click()" style="border-color: #ea580c; background: #fff7ed; padding: 1.5rem; text-align: center; cursor: pointer; border-radius: 8px; border-width: 2px; border-style: dashed; margin-bottom: 12px;">
+                <input type="file" id="pptFileInput" accept=".ppt,.pptx,.pdf" style="display: none;" onchange="handlePptFileSelected(event)">
+                <i class="fa-solid fa-file-powerpoint" style="font-size: 2.2rem; color: #ea580c; margin-bottom: 8px;"></i>
+                <p class="dropzone-title" style="font-weight: 600; color: #9a3412; margin: 0 0 4px;">Choose PowerPoint (.ppt, .pptx) or PDF Slides</p>
+                <span id="selectedPptInfo" style="font-size: 0.85rem; color: #c2410c;">Click to browse from your computer</span>
+            </div>
+
+            <div class="modal-form-group">
+                <label for="pptNotesInput">Key Highlights / Presentation Notes (Optional)</label>
+                <textarea id="pptNotesInput" class="modal-select" rows="2" style="width: 100%; padding: 0.65rem; resize: vertical;" placeholder="Summary of slides, covered modules, and questions for guide review..."></textarea>
+            </div>
+
+            <div id="pptUploadProgress" class="upload-progress-container" style="display: none; margin-top: 10px;">
+                <div class="progress-info">
+                    <span id="pptUploadText">Sending presentation to guide...</span>
+                    <span class="status-badge"><i class="fa-solid fa-spinner fa-spin"></i> Uploading</span>
+                </div>
+                <div class="progress-bar-wrap">
+                    <div id="pptProgressBar" class="progress-bar-fill" style="width: 0%; background: #ea580c;"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal-footer">
+            <button type="button" class="action-btn secondary" onclick="closeSendPptModal()">
+                Cancel
+            </button>
+            <button type="button" class="action-btn" id="submitPptBtn" onclick="submitPptPresentation()" style="background: #ea580c; border-color: #ea580c;">
+                <i class="fa-solid fa-paper-plane"></i> Send PPT to Guide
+            </button>
+        </div>
+    </div>
+</div>
+
+<!-- ================= ADD GROUP MEMBER MODAL ================= -->
+<div class="modal-overlay" id="addMemberModal" style="display: none;">
+    <div class="modal-content" style="max-width: 480px;">
+        <div class="modal-header">
+            <h3><i class="fa-solid fa-user-plus"></i> Add Group Member</h3>
+            <button class="modal-close" onclick="closeAddMemberModal()">&times;</button>
+        </div>
+        <div class="modal-body" style="padding: 1.5rem;">
+            <div class="modal-form-group" style="margin-bottom: 14px;">
+                <label for="newMemberName">Member Full Name</label>
+                <input type="text" id="newMemberName" class="modal-select" style="padding: 0.65rem;" placeholder="e.g. Rahul Sharma" required>
+            </div>
+            <div class="modal-form-group" style="margin-bottom: 14px;">
+                <label for="newMemberRoll">Roll Number / Student ID</label>
+                <input type="text" id="newMemberRoll" class="modal-select" style="padding: 0.65rem;" placeholder="e.g. 26EACT06">
+            </div>
+            <div class="modal-form-group" style="margin-bottom: 14px;">
+                <label for="newMemberRole">Project Role</label>
+                <input type="text" id="newMemberRole" class="modal-select" style="padding: 0.65rem;" placeholder="e.g. Frontend Developer / IoT Hardware" value="Team Member">
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="action-btn secondary" onclick="closeAddMemberModal()">Cancel</button>
+            <button type="button" class="action-btn" id="submitAddMemberBtn" onclick="submitNewGroupMember()">
+                <i class="fa-solid fa-plus"></i> Add to Group
+            </button>
+        </div>
+    </div>
+</div>
+
+<!-- ================= JAVASCRIPT ================= -->
+<script src="student-dashboard.js"></script>
+<script type="module" src="my-files.js"></script>
+
+</body>
+</html>
