@@ -19,12 +19,14 @@ router.use((req: Request, res: Response, next) => {
 });
 
 // Ensure uploads and instance directories exist
-const uploadDir = path.join(process.cwd(), 'uploads');
+// PROJECTTRACK_DATA_DIR lets serverless runtimes point storage at a writable location
+const dataRoot = process.env.PROJECTTRACK_DATA_DIR || process.cwd();
+export const uploadDir = path.join(dataRoot, 'uploads');
 if (!fs.existsSync(uploadDir)) {
   fs.mkdirSync(uploadDir, { recursive: true });
 }
 
-const instanceDir = path.join(process.cwd(), 'instance');
+const instanceDir = path.join(dataRoot, 'instance');
 if (!fs.existsSync(instanceDir)) {
   fs.mkdirSync(instanceDir, { recursive: true });
 }
@@ -408,20 +410,46 @@ let users: Record<string, UserAccount> = {
 };
 
 // Persistence functions
+let dirty = false;
+
+export function importState(parsed: any) {
+  if (!parsed) return;
+  if (parsed.projects && parsed.projects.length) projects = parsed.projects;
+  if (parsed.feedbacks) feedbacks = parsed.feedbacks;
+  if (parsed.notifications) notifications = parsed.notifications;
+  if (parsed.reports) reports = parsed.reports;
+  if (parsed.testimonials && parsed.testimonials.length) testimonials = parsed.testimonials;
+  if (parsed.users) users = { ...users, ...parsed.users };
+}
+
+export function exportState() {
+  return {
+    projects,
+    feedbacks,
+    notifications,
+    reports,
+    testimonials,
+    users,
+    lastUpdated: new Date().toISOString()
+  };
+}
+
+// Returns true if data changed since the last call
+export function consumeDirty() {
+  const wasDirty = dirty;
+  dirty = false;
+  return wasDirty;
+}
+
 function loadDataFromDisk() {
   try {
     if (fs.existsSync(DATA_FILE)) {
       const raw = fs.readFileSync(DATA_FILE, 'utf-8');
-      const parsed = JSON.parse(raw);
-      if (parsed.projects && parsed.projects.length) projects = parsed.projects;
-      if (parsed.feedbacks) feedbacks = parsed.feedbacks;
-      if (parsed.notifications) notifications = parsed.notifications;
-      if (parsed.reports) reports = parsed.reports;
-      if (parsed.testimonials && parsed.testimonials.length) testimonials = parsed.testimonials;
-      if (parsed.users) users = { ...users, ...parsed.users };
+      importState(JSON.parse(raw));
       console.log('ProjectTrack data loaded from persistent disk store.');
     } else {
       saveDataToDisk();
+      dirty = false;
     }
   } catch (err) {
     console.warn('Could not load data file, using defaults:', err);
@@ -429,17 +457,9 @@ function loadDataFromDisk() {
 }
 
 function saveDataToDisk() {
+  dirty = true;
   try {
-    const payload = {
-      projects,
-      feedbacks,
-      notifications,
-      reports,
-      testimonials,
-      users,
-      lastUpdated: new Date().toISOString()
-    };
-    fs.writeFileSync(DATA_FILE, JSON.stringify(payload, null, 2), 'utf-8');
+    fs.writeFileSync(DATA_FILE, JSON.stringify(exportState(), null, 2), 'utf-8');
   } catch (err) {
     console.error('Error saving ProjectTrack data to disk:', err);
   }
